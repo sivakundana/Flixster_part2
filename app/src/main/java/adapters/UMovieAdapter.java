@@ -16,74 +16,80 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.flixster.DetailActivity;
 import com.example.flixster.R;
+import com.example.flixster.UDetailActivity;
 
 import org.parceler.Parcels;
 
 import java.util.List;
 
 import models.Movie;
+import models.UMovie;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class UMovieAdapter extends RecyclerView.Adapter<UMovieAdapter.ViewHolder> {
 
     Context context;
-    List<Movie> movies;
+    List<UMovie> umovies;
 
-    public MovieAdapter(Context context, List<Movie> movies) {
+    public UMovieAdapter(Context context, List<UMovie> umovies) {
         this.context = context;
-        this.movies = movies;
+        this.umovies = umovies;
     }
     //Usually involves inflating a layout from XML and returning the holder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d("MovieAdapter","onCreateViewHolder");
-        View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent,false);
-        return new ViewHolder(movieView);
+        Log.d("UMovieAdapter","onCreateViewHolder");
+        View umovieView = LayoutInflater.from(context).inflate(R.layout.item_umovie, parent,false);
+        return new ViewHolder(umovieView);
     }
     //Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d("MovieAdapter","onBindViewHolder"+position);
+        Log.d("UMovieAdapter","onBindViewHolder"+position);
         //Get the movie at the position
-        Movie movie = movies.get(position);
+        UMovie umovie = umovies.get(position);
         //Bind the movie data into the view holder
-        holder.bind(movie);
+        holder.bind(umovie);
 
     }
     //Returns the total count of items in the list
     @Override
     public int getItemCount() {
-        return movies.size();
+        return umovies.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        RelativeLayout container;
-        TextView tvTitle;
-        TextView tvOverview;
-        ImageView ivPoster;
+        RelativeLayout ucontainer;
+        TextView tuTitle;
+        TextView tuOverview;
+        ImageView iuPoster;
+        TextView tvDate;
+
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
-            ivPoster = itemView.findViewById(R.id.ivPoster);
-            container = itemView.findViewById(R.id.container);
+            tuTitle = itemView.findViewById(R.id.tuTitle);
+            tuOverview = itemView.findViewById(R.id.tuOverview);
+            iuPoster = itemView.findViewById(R.id.iuPoster);
+            ucontainer = itemView.findViewById(R.id.ucontainer);
+            tvDate = itemView.findViewById(R.id.tvDate);
 
         }
 
-        public void bind(final Movie movie) {
-            tvTitle.setText(movie.getTitle());
-            tvOverview.setText(movie.getOverview());
-            Glide.with(context).load(movie.getPosterPath()).into(ivPoster);
+        public void bind(final UMovie umovie) {
+            tuTitle.setText(umovie.getTitle());
+            tuOverview.setText(umovie.getOverview());
+            tvDate.setText(umovie.getReleaseDate());
+            Glide.with(context).load(umovie.getPosterPath()).into(iuPoster);
             //Register click listener on the whole row
             //Naviagte to a new activity on tap.
-            container.setOnClickListener(new View.OnClickListener() {
+            ucontainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(context, DetailActivity.class);
-                    i.putExtra("movie",Parcels.wrap(movie));
+                    Intent i = new Intent(context, UDetailActivity.class);
+                    i.putExtra("umovie",Parcels.wrap(umovie));
                     context.startActivity(i);
 
 

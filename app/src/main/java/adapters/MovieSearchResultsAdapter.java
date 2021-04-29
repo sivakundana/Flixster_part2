@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,12 +24,12 @@ import java.util.List;
 
 import models.Movie;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class MovieSearchResultsAdapter extends RecyclerView.Adapter<MovieSearchResultsAdapter.ViewHolder> {
 
     Context context;
     List<Movie> movies;
 
-    public MovieAdapter(Context context, List<Movie> movies) {
+    public MovieSearchResultsAdapter(Context context, List<Movie> movies) {
         this.context = context;
         this.movies = movies;
     }
@@ -36,14 +37,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d("MovieAdapter","onCreateViewHolder");
-        View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent,false);
+        Log.d("MovieSRAdapter","onCreateViewHolder");
+        View movieView = LayoutInflater.from(context).inflate(R.layout.item_smovie, parent,false);
         return new ViewHolder(movieView);
     }
     //Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d("MovieAdapter","onBindViewHolder"+position);
+        Log.d("MovieSRAdapter","onBindViewHolder"+position);
         //Get the movie at the position
         Movie movie = movies.get(position);
         //Bind the movie data into the view holder
@@ -58,24 +59,22 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        RelativeLayout container;
+        LinearLayout container;
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        TextView rvSearchResultText;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            rvSearchResultText = itemView.findViewById(R.id.rvSearchResultText);
             container = itemView.findViewById(R.id.container);
 
         }
 
         public void bind(final Movie movie) {
-            tvTitle.setText(movie.getTitle());
-            tvOverview.setText(movie.getOverview());
             Glide.with(context).load(movie.getPosterPath()).into(ivPoster);
             //Register click listener on the whole row
             //Naviagte to a new activity on tap.
@@ -85,8 +84,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     Intent i = new Intent(context, DetailActivity.class);
                     i.putExtra("movie",Parcels.wrap(movie));
                     context.startActivity(i);
-
-
                 }
             });
         }

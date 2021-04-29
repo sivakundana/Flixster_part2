@@ -23,12 +23,12 @@ import java.util.List;
 
 import models.Movie;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class FavoritesMovieAdapter extends RecyclerView.Adapter<FavoritesMovieAdapter.ViewHolder> {
 
     Context context;
     List<Movie> movies;
 
-    public MovieAdapter(Context context, List<Movie> movies) {
+    public FavoritesMovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
         this.movies = movies;
     }
@@ -85,8 +85,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     Intent i = new Intent(context, DetailActivity.class);
                     i.putExtra("movie",Parcels.wrap(movie));
                     context.startActivity(i);
-
-
                 }
             });
         }

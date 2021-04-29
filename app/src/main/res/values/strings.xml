@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Flixster</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="search_movie">Search Movie</string>
+    <string name="success_results_heading">results for</string>
+    <string name="search_error_message1">No results found for</string>
+    <string name="search_error_message2">Failed to get results, please try again.</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="remove_from_favorites">Remove from my favorites</string>
+    <string name="add_to_favorites">Add to my favorites</string>
+    <string name="favorites_removed_1">Removed</string>
+    <string name="favorites_removed_2">from your favorites</string>
+    <string name="favorites_added_1">Added</string>
+    <string name="favorites_added_2">to your favorites</string>
+    <string name="no_fav_movies_msg">Your favorite list is empty!\n\nPlease add one by going to movie details screen.</string>
+    <string name="movie_error_msg">Please check your internet connection.</string>
 </resources>
